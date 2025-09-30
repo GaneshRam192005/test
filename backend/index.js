@@ -9,6 +9,7 @@ app.use(express.json());
 createUserDb()
 app.use('/users',userRoutes);
 
+
 app.listen(PORT,()=>{
     console.log(`http://localhost:${PORT}`);
 })

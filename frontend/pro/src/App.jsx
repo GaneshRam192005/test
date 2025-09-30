@@ -1,6 +1,8 @@
 import React, { useState } from "react";
+import {useNavigate} from 'react-router-dom'
 
 export default function App() {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -29,8 +31,10 @@ export default function App() {
       });
 
       const data = await res.json();
-      if (res.ok) {
+      console.log(res)
+      if (res.status===200) {
         setMessage(JSON.stringify(data));
+        navigate('/dashboard')
       } else {
         setMessage(data.message || "Something went wrong");
       }
@@ -85,7 +89,7 @@ export default function App() {
         </form>
 
         <p className="mt-4 text-center text-sm text-gray-600">
-          {isLogin ? "Don’t have an account?" : "Already have an account?"}{" "}
+          {isLogin ? "Dont have an account?" : "Already have an account?"}{" "}
           <button
             onClick={() => setIsLogin(!isLogin)}
             className="text-blue-600 hover:underline"
